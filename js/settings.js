@@ -50,7 +50,7 @@ function renderMilestones(_milestones) {
       mDiv.id = slug;
       mDiv.className = "milestone-element";
 
-      mDiv.appendChild(milestoneRenderer(m));
+      mDiv.appendChild(milestoneRenderer(m, key));
 
       milestonesElementSelector.appendChild(mDiv);
 
