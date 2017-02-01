@@ -32,7 +32,7 @@ var dataMatch = function() {
 
     cards.forEach(function(card) {
 
-      if(milestones[card.id] !== null) {
+      if(milestones[card.id]) {
         matchedData[card.id] = {
           milestone: milestones[card.id],
           card: card
