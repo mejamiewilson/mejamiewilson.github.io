@@ -7,12 +7,19 @@
 
 var database = firebase.database();
 var milestones = {};
-var cardId = "abc";
+var cardId;
+var firebaseRef;
 
-var starCountRef = firebase.database().ref('cards/' + cardId + '/milestones');
-starCountRef.on('value', function(snapshot) {
-  renderMilestones(snapshot.val());
-});
+t.card('id').then(init);
+
+var init = function(id) {
+  console.log("Found the ID", id);
+  cardId = id;
+  firebaseRef = firebase.database().ref('cards/' + id + '/milestones');
+  firebaseRef.on('value', function(snapshot) {
+    renderMilestones(snapshot.val());
+  });
+}
 
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
