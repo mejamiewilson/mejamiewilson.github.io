@@ -15,6 +15,7 @@ t.render(function(){
 
     then(function(promiseResult) {
       cards = promiseResult;
+      document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + JSON.stringify(promiseResult);
       console.log(promiseResult);
     });
 
