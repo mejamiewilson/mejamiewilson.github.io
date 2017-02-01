@@ -73,13 +73,16 @@ function milestoneRenderer(milestone) {
   var wrapper = document.createElement("div");
   var name = document.createElement("div");
   name.innerHTML = milestone.name;
+  name.className="name-div";
   var date = document.createElement("div");
   date.innerHTML = milestone.date;
+  name.className="date-div";
   var link = document.createElement("a");
   link.innerHTML = "Edit";
   wrapper.appendChild(name);
   wrapper.appendChild(date);
   wrapper.appendChild(link);
+  wrapper.className = "cf";
   return wrapper;
 }
 

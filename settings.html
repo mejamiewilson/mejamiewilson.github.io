@@ -3,6 +3,43 @@
     <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css" />
     <link rel="stylesheet" href="./css/settings.css" />
     <script src="https://trello.com/power-ups/power-up.min.js"></script>
+    <style type="text/css">
+    .cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+      #milestones {
+          background:#efefef;
+      }
+      .milestone-element {
+          display:block;
+          line-height:20px;
+      }
+      .milestone-element div, .milestone-element a {
+          display:inline-block;
+      }
+      .milestone-element div.name-div {
+        font-weight:bold;
+        float:right;
+      }
+      .milestone-element a {
+          float:right;
+          text-decoration:underline;
+      }
+    </style>
   </head>
   <body>
     <div id="content">
