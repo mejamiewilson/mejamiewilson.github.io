@@ -7,6 +7,7 @@ var milestones = [];
 var matchedData = {};
 var canvasElement = document.getElementById("result");
 var dayGridElement = document.getElementById("day-grid");
+var scroller = document.getElementById('scroller');
 var dayWidth = 0;
 var today = new Date();
 
@@ -57,6 +58,10 @@ var calculateFrame = function() {
   var height = ((Object.keys(matchedData).length + 1) * (30 + 8)) - 8;
   canvasElement.style.height = height + "px";
   dayWidth = (window.innerWidth - 16) / 30;
+
+  scroller.style.width = dayWidth * 51;
+  scroller.style.left = dayWidth * 7 * -1;
+
 
 };
 

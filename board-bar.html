@@ -5,7 +5,10 @@
     body {
   background: #6D4C80;
   color: white;
-  padding: 18px;
+}
+
+#scroller {
+  overflow:auto;
 }
 
 #result {
@@ -30,7 +33,7 @@
   background:white;
   display:block;
   border-radius:3px;
-  text-align:right;
+  text-align:left;
   color:black;
   height:30px;
   margin-bottom:8px;
@@ -53,8 +56,10 @@
   </head>
   <body>
     <div id="content">
-      <div id="day-grid"></div>
-      <div id="result"></div>
+      <div id="scroller">
+        <div id="day-grid"></div>
+        <div id="result"></div>
+      </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
     <script>
