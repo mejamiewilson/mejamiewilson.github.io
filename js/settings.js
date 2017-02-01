@@ -7,6 +7,7 @@ var addMilestoneSelector = document.getElementById('js-add-milestone');
 var milestonesElementSelector = document.getElementById('milestones');
 
 var milestonesArray = [];
+var tempMilestonesArray = [];
 
 t.render(renderMilestones);
 
@@ -19,6 +20,11 @@ function renderMilestones() {
     if(savedMilestones) {
       milestonesArray = JSON.parse(savedMilestones);
     }
+
+    for(var x = 0; x < tempMilestonesArray.length; x++) {
+      milestonesArray.push(tempMilestonesArray[x]);
+    }
+    tempMilestonesArray = [];
 
     for(var i = 0; i < milestonesArray.length; i++) {
 
@@ -104,7 +110,7 @@ document.getElementById("new-milestone-form-save").addEventListener('click', fun
 });
 
 var tempSaveMilestone = function(milestone) {
-  milestonesArray.push(milestone);
+  tempMilestonesArray.push(milestone);
   renderMilestones();
 }
 
