@@ -59,8 +59,8 @@ var calculateFrame = function() {
   canvasElement.style.height = height + "px";
   dayWidth = (window.innerWidth - 16) / 30;
 
-  scroller.style.width = dayWidth * 51;
-  scroller.style.left = dayWidth * 7 * -1;
+  scroller.style.width = (dayWidth * 51) + "px";
+  scroller.style.left = (dayWidth * 7 * -1) + "px";
 
 
 };
