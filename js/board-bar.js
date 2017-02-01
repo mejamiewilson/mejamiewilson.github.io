@@ -55,7 +55,7 @@ var calculateFrame = function() {
   var barHeight = 30;
   var height = ((Object.keys(matchedData).length + 1) * (30 + 8)) - 8;
   canvasElement.style.height = height + "px";
-  var dayWidth = window.innerWidth - 16;
+  var dayWidth = (window.innerWidth - 16) / 30;
 
 };
 
@@ -96,6 +96,8 @@ var renderBar = function(cardId, barObj) {
   var daysBetweenMin = days_between(min, today);
   var daysBetweenMax = days_between(max, today);
   var daysBetweenBoth = days_between(min, max);
+
+  console.log(dayWidth, window.innerWidth);
 
   getBar.style.width = dayWidth * daysBetweenBoth;
   getBar.style.left = dayWidth * daysBetweenMin;
