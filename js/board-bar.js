@@ -79,7 +79,8 @@ var renderCalendar = function() {
   for(var i = -7; i < 44; i++) {
     var dayEl = document.createElement("div");
     dayEl.className = "day-slot";
-    dayEl.style.width = (dayWidth - 1) + "px";
+    dayEl.style.width = (dayWidth) + "px";
+    dayEl.style.height = "100%";
     var result = new Date();
     result.setDate(result.getDate() + i);
     dayEl.innerHTML = result.getDay();

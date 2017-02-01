@@ -6,6 +6,13 @@
   background: #6D4C80;
   color: white;
 }
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 #content {
   overflow:auto;
 }
@@ -32,6 +39,7 @@
   border-right:1px solid rgba(255, 255, 255, 0.4);
 }
 .milestone-bar {
+  cursor:pointer;
   background:white;
   display:block;
   border-radius:3px;
@@ -43,6 +51,9 @@
   line-height:30px;
   text-indent:8px;
   font-weight:bold;
+}
+.milestone-bar:hover {
+  box-shadow:0px 0px 2px rgba(0,0,0,0.5);
 }
 .milestone {
   display:block;
