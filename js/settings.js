@@ -9,6 +9,8 @@ var database = firebase.database();
 var milestones = {};
 var cardId;
 var firebaseRef;
+var Promise = TrelloPowerUp.Promise;
+var t = TrelloPowerUp.iframe();
 
 t.card('id').then(init);
 
@@ -20,9 +22,6 @@ var init = function(id) {
     renderMilestones(snapshot.val());
   });
 }
-
-var Promise = TrelloPowerUp.Promise;
-var t = TrelloPowerUp.iframe();
 
 var addMilestoneSelector = document.getElementById('js-add-milestone');
 var milestonesElementSelector = document.getElementById('milestones');
