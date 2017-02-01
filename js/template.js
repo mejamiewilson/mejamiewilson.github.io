@@ -112,30 +112,48 @@ var boardButtonCallback = function(t){
   // });
 };
 
-var cardButtonCallback = function(t){
-  var items = Object.keys(parkMap).map(function(parkCode){
-    var urlForCode = 'http://www.nps.gov/' + parkCode + '/';
-    return {
-      text: parkMap[parkCode],
-      url: urlForCode,
-      callback: function(t){
-        return t.attach({ url: urlForCode, name: parkMap[parkCode] })
-        .then(function(){
-          return t.closePopup();
-        })
-      }
-    };
-  });
+var milestonesCardButtonCallback = function(t){
+  // var items = Object.keys(parkMap).map(function(parkCode){
+  //   var urlForCode = 'http://www.nps.gov/' + parkCode + '/';
+  //   return {
+  //     text: parkMap[parkCode],
+  //     url: urlForCode,
+  //     callback: function(t){
+  //       return t.attach({ url: urlForCode, name: parkMap[parkCode] })
+  //       .then(function(){
+  //         return t.closePopup();
+  //       })
+  //     }
+  //   };
+  // });
 
-  return t.popup({
-    title: 'Popup Search Example',
-    items: items,
-    search: {
-      count: 5,
-      placeholder: 'Search National Parks',
-      empty: 'No parks found'
-    }
-  });
+  //Milestones
+  //callback
+  //url
+  //items
+  //search
+
+  // search: {
+  //     count: 5,
+  //     placeholder: 'Search National Parks',
+  //     empty: 'No parks found'
+  //   }
+
+    return t.popup({
+      title: 'Set Milestones',
+      url: './settings.html',
+      height: 184
+    });
+
+
+  // return t.popup({
+  //   title: 'Set Milestones',
+  //   items: [
+  //     {
+        
+  //     }
+  //     ]
+  // });
 };
 
 TrelloPowerUp.initialize({
@@ -203,8 +221,8 @@ TrelloPowerUp.initialize({
   'card-buttons': function(t, options) {
     return [{
       icon: GRAY_ICON,
-      text: 'Template',
-      callback: cardButtonCallback
+      text: 'Milestones',
+      callback: milestonesCardButtonCallback
     }];
   },
   'card-detail-badges': function(t, options) {
