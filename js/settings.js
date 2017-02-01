@@ -57,7 +57,7 @@ function renderMilestones(_milestones) {
     } else {
 
       milestonesElementSelector.innerHTML = "";
-      milestonesElementSelector.appendChild(milestoneRenderer(m));
+      milestonesElementSelector.appendChild(milestoneRenderer(m, key));
 
     }
 
@@ -68,7 +68,7 @@ function renderMilestones(_milestones) {
 
 }
 
-function milestoneRenderer(milestone) {
+function milestoneRenderer(milestone, key) {
   var wrapper = document.createElement("div");
   var name = document.createElement("div");
   name.innerHTML = milestone.name;
@@ -80,7 +80,7 @@ function milestoneRenderer(milestone) {
   var link = document.createElement("a");
   link.innerHTML = "Edit";
   console.log("Rendering a milestone", milestone);
-  link.id="edit-" + milestone.id;
+  link.id="edit-" + key;
   link.addEventListener('click', handleEdit);
   wrapper.appendChild(name);
   wrapper.appendChild(link);
@@ -92,6 +92,15 @@ function milestoneRenderer(milestone) {
 function handleEdit(event) {
   console.log(event);
   console.log(this.id);
+  var key = this.id.split("-")[1];
+  var milestone = milestones[key];
+  console.log(key, milestone);
+  var milestoneName = document.getElementById("new-milestone-form-name");
+  var milestoneDate = document.getElementById("new-milestone-form-date");
+  milestoneName.value = milestone.name;
+  mielstoneDate.value = milestone.date;
+  var button = document.getElementById("new-milestone-form-save");
+  button.value = "Save";
   openForm("milestone");
 }
 
