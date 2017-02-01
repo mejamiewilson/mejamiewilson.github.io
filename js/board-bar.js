@@ -102,7 +102,10 @@ var renderBar = function(cardId, barObj) {
   if(!getBar) {
     getBar = document.createElement("div");
     getBar.id = "milestone-bar-" + cardId;
-    getBar.className = "milestone-bar";
+    getBar.className = "milestone-bar ";
+    if(barObj.card.labels.length > 0) {
+      getBar.className = "milestone-bar " + barObj.card.labels[0].color;
+    }
     canvasElement.appendChild(getBar);
   }
 
