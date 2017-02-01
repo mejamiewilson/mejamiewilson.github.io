@@ -22,8 +22,9 @@
     *zoom: 1;
 }
       #milestones {
-          border-bottom:1px solid #efefef;
-          margin-bottom:20px;
+          border-bottom:1px solid #D6DADC;
+          margin-bottom:10px;
+          padding-bottom:10px;
       }
       .milestone-element {
           display:block;
@@ -45,6 +46,9 @@
           float:right;
           text-decoration:underline;
       }
+      #js-add-milestone {
+        float:right;
+      }
     </style>
   </head>
   <body>
@@ -59,8 +63,8 @@
         <input type="button" value="Add" id="new-milestone-form-save" />
         <a id="js-cancel-new-milestone" href="javascript:">Cancel</a>
       </div>
-      <a id="js-add-milestone" href="javascript:">Add a Milestone</a>
       <button id="close" class="mod-secondary">Close</button>
+      <a id="js-add-milestone" href="javascript:">Add a Milestone</a>
     </div>
     <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
     <script>
