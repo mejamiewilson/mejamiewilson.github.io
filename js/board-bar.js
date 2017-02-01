@@ -124,8 +124,11 @@ var renderBar = function(cardId, barObj) {
 
   console.log("Milestone, min max", min, max);
 
-  var daysBetweenMin = days_between(min, today);
-  var daysBetweenMax = days_between(max, today);
+  var start = new Date();
+  start.setDate(start.getDate() - 7);
+
+  var daysBetweenMin = days_between(min, start);
+  var daysBetweenMax = days_between(max, start);
   var daysBetweenBoth = days_between(max, min);
   console.log("days between both", daysBetweenBoth);
   var dayWidth = (window.innerWidth - 16) / 30;
@@ -142,6 +145,7 @@ var renderBar = function(cardId, barObj) {
     var fromStart = days_between(d, min);
     var dot = document.createElement("div");
     dot.className = "milestone";
+    dot.innerHTML = milestones[x].name;
     getBar.appendChild(dot);
     dot.style.left = ((fromStart * dayWidth) - 5) + "px";
     console.log(d, fromStart, dot, dot.style.left);
