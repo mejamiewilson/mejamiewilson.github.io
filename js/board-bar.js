@@ -68,4 +68,17 @@ var renderBar = function(cardId, barObj) {
 
   console.log("Render Bar", cardId);
 
+  var getBar = document.getElementById("milestone-bar-" + cardId);
+
+  if(!getBar) {
+    getBar = document.createElement("div");
+    getBar.id = "milestone-bar-" + cardId;
+    bagetBar.className = "milestone-bar";
+    canvasElement.appendChild(getBar);
+  }
+
+  getBar.innerHTML = barObj.card.name;
+
+
+
 };
