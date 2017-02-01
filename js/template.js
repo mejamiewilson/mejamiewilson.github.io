@@ -82,7 +82,7 @@ var formatNPSUrl = function(t, url){
 var boardButtonCallback = function(t){
   return t.boardBar({
     url: './board-bar.html',
-    height: 200
+    height: 400
   });
   // return t.popup({
   //   title: 'Popup List Example',
