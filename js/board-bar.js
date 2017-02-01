@@ -8,6 +8,7 @@ var matchedData = {};
 var canvasElement = document.getElementById("result");
 var dayGridElement = document.getElementById("day-grid");
 var scroller = document.getElementById('scroller');
+var content = document.getElementById('content');
 var dayWidth = 0;
 var today = new Date();
 
@@ -60,7 +61,7 @@ var calculateFrame = function() {
   dayWidth = (window.innerWidth - 16) / 30;
 
   scroller.style.width = (dayWidth * 51) + "px";
-  scroller.style.left = (dayWidth * 7 * -1) + "px";
+  content.scrollLeft = (dayWidth * 7 * -1) + "px";
 
 
 };
