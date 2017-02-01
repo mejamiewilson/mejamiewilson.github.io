@@ -66,15 +66,15 @@ var render = function() {
   Object.keys(matchedData).forEach(function(cardId) {
     renderBar(cardId, matchedData[cardId]);
   })
-  for(var i = 0; i < 30; i++) {
-    var dayEl = document.createElement("div");
-    dayEl.className = "day-slot";
-    dayEl.style.width = (dayWidth - 1) + "px";
-    var result = new Date();
-    result.setDate(result.getDate() + i);
-    dayEl.innerHTML = result.getDay();
-    dayGridElement.appendChild(dayEl);
-  }
+  // for(var i = 0; i < 30; i++) {
+  //   var dayEl = document.createElement("div");
+  //   dayEl.className = "day-slot";
+  //   dayEl.style.width = (dayWidth - 1) + "px";
+  //   var result = new Date();
+  //   result.setDate(result.getDate() + i);
+  //   dayEl.innerHTML = result.getDay();
+  //   dayGridElement.appendChild(dayEl);
+  // }
 };
 
 var renderBar = function(cardId, barObj) {
