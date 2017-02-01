@@ -13,7 +13,7 @@ var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
 t.card('id', 'name', 'url').then(function(promiseResult){
-  alert("FOUND THE ID", id);
+  alert("FOUND THE ID", promiseResult.id);
   init(promiseResult.id);
 });
 
