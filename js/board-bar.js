@@ -21,9 +21,10 @@ t.render(function(){
     dataMatch();
   });  
   
-  return t.cards('id', 'name').
+  return t.cards('id', 'name', 'labels').
     then(function(promiseResult) {
       cards = promiseResult;
+      console.log(promiseResult, "CARDS FETCHED");
       dataMatch();
     });
   
@@ -33,8 +34,6 @@ t.render(function(){
 var dataMatch = function() {
 
   if(milestones.length !== 0 && cards.length !== 0) {
-
-    console.log("Starting to card match");
 
     cards.forEach(function(card) {
 
@@ -47,7 +46,6 @@ var dataMatch = function() {
 
     });
 
-    console.log("Matched data to render");
     render();
 
   }
@@ -70,7 +68,6 @@ var calculateFrame = function() {
 };
 
 var render = function() {
-  console.log("Matched Data", matchedData);
   calculateFrame();
   renderCalendar();
   Object.keys(matchedData).forEach(function(cardId) {
@@ -122,33 +119,26 @@ var renderBar = function(cardId, barObj) {
       if( d > max) max = d;
   }
 
-  console.log("Milestone, min max", min, max);
-
   var start = new Date();
   start.setDate(start.getDate() - 7);
 
   var daysBetweenMin = days_between(min, start);
   var daysBetweenMax = days_between(max, start);
   var daysBetweenBoth = days_between(max, min);
-  console.log("days between both", daysBetweenBoth);
   var dayWidth = (window.innerWidth - 16) / 30;
 
   getBar.style.width = (dayWidth * (daysBetweenBoth + 1)) + "px";
   getBar.style.left = (dayWidth * (daysBetweenMin + 1)) + "px";
 
-  console.log("Days between", daysBetweenMin, daysBetweenMax);
-
   //render milesstones in the bar
   for(x in milestones) {
-    console.log('draw milestone');
     var d = new Date(milestones[x].date);
     var fromStart = days_between(d, min);
     var dot = document.createElement("div");
     dot.className = "milestone";
     dot.innerHTML = milestones[x].name;
     getBar.appendChild(dot);
-    dot.style.left = ((fromStart * dayWidth) - 5) + "px";
-    console.log(d, fromStart, dot, dot.style.left);
+    dot.style.left = (((fromStart * dayWidth) - 5) + (dayWidth / 2) - 5) + "px";
   }
 
 };

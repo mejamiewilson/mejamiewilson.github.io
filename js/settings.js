@@ -13,14 +13,11 @@ var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
 t.card('id', 'name', 'url').then(function(promiseResult){
-  alert("FOUND THE ID", promiseResult.id);
   init(promiseResult.id);
 });
 
 
 var init = function(id) {
-  alert(id);
-  console.log("Found the ID", id);
   cardId = id;
   firebaseRef = firebase.database().ref('cards/' + id + '/milestones');
   firebaseRef.on('value', function(snapshot) {
@@ -38,8 +35,6 @@ var tempMilestonesArray = [];
 
 function renderMilestones(_milestones) {
 
-  console.log(_milestones);
-
   Object.keys(_milestones || {}).forEach(function(key) {
     var m = _milestones[key];
     var slug = "milestone-" + key;
@@ -47,8 +42,7 @@ function renderMilestones(_milestones) {
 
     //render
     var renderTarget = document.getElementById(slug);
-    console.log(renderTarget, slug);
-
+    
     if(!renderTarget) {
 
       var mDiv = document.createElement("div");
