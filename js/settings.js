@@ -43,6 +43,8 @@ addMilestoneSelector.addEventListener('click', function() {
   console.log("Appending Child");
   //milestonesElementSelector.appendChild(milestoneRenderer());
   milestonesElementSelector.innerHTML = "New Milestone";
+  return t.sizeTo('#content')
+    .done();
 });
 
 document.getElementById('save').addEventListener('click', function(){
