@@ -6,6 +6,7 @@ var cards = [];
 var milestones = [];
 var matchedData = {};
 var canvasElement = document.getElementById("result");
+var dayGridElement = document.getElementById("day-grid");
 var dayWidth = 0;
 var today = new Date();
 
@@ -55,7 +56,7 @@ var calculateFrame = function() {
   var barHeight = 30;
   var height = ((Object.keys(matchedData).length + 1) * (30 + 8)) - 8;
   canvasElement.style.height = height + "px";
-  var dayWidth = (window.innerWidth - 16) / 30;
+  dayWidth = (window.innerWidth - 16) / 30;
 
 };
 
@@ -65,6 +66,14 @@ var render = function() {
   Object.keys(matchedData).forEach(function(cardId) {
     renderBar(cardId, matchedData[cardId]);
   })
+  for(var i = 0; i < 30; i++) {
+    var dayEl = document.createElement("div");
+    dayEl.className = "day-slot";
+    var result = new Date();
+    result.setDate(result.getDate() + i);
+    dayEl.innerHTML = result.getDay();
+    dayGridElement.appendChild(dayEl);
+  }
 };
 
 var renderBar = function(cardId, barObj) {
@@ -136,3 +145,4 @@ function days_between(date1, date2) {
     return Math.round(difference_ms/ONE_DAY)
 
 }
+

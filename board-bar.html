@@ -11,7 +11,20 @@
 #result {
   position:relative;
 }
-
+#day-grid {
+  display:block;
+}
+.day-slot {
+ color:white;
+ font-size:10px;
+ border-left:1px solid rgba(255, 255, 255, 0.4);
+ text-align:center;
+ line-height:20px;
+ border-top:1px solid rgba(255, 255, 255, 0.4); 
+}
+.day-slot:last-child {
+  border-right:1px solid rgba(255, 255, 255, 0.4);
+}
 .milestone-bar {
   background:white;
   display:block;
@@ -39,6 +52,7 @@
   </head>
   <body>
     <div id="content">
+      <div id="day-grid"></div>
       <div id="result"></div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
