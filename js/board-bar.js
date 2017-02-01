@@ -6,6 +6,7 @@ var cards = [];
 var milestones = [];
 var matchedData = {};
 var canvasElement = document.getElementById("result");
+var dayWidth = 0;
 
 t.render(function(){
 
@@ -53,6 +54,7 @@ var calculateFrame = function() {
   var barHeight = 30;
   var height = ((Object.keys(matchedData).length + 1) * (30 + 8)) - 8;
   canvasElement.style.height = height + "px";
+  var dayWidth = window.innerWidth - 16;
 
 };
 
@@ -73,7 +75,7 @@ var renderBar = function(cardId, barObj) {
   if(!getBar) {
     getBar = document.createElement("div");
     getBar.id = "milestone-bar-" + cardId;
-    bagetBar.className = "milestone-bar";
+    getBar.className = "milestone-bar";
     canvasElement.appendChild(getBar);
   }
 
