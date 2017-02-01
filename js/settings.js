@@ -5,6 +5,15 @@
 // delete
 // resize on cancel
 
+var database = firebase.database();
+var milestones = {};
+var cardId = "abc";
+
+var starCountRef = firebase.database().ref('cards/' + cardId + '/milestones');
+starCountRef.on('value', function(snapshot) {
+  renderMilestones(snapshot.val());
+});
+
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
@@ -14,60 +23,45 @@ var milestonesElementSelector = document.getElementById('milestones');
 var milestonesArray = [];
 var tempMilestonesArray = [];
 
-t.render(renderMilestones);
+//t.render(renderMilestones);
 
-function renderMilestones() {
-  return Promise.all([
-    t.get('card', 'private', 'milestones')
-  ])
-  .spread(function(savedMilestones){
-    
-    milestonesArray = [];
-    
-    if(savedMilestones) {
-      milestonesArray = JSON.parse(savedMilestones);
-    }
+function renderMilestones(_milestones) {
 
-    for(var x = 0; x < tempMilestonesArray.length; x++) {
-      milestonesArray.push(tempMilestonesArray[x]);
-    }
-    tempMilestonesArray = [];
+  console.log(_milestones);
 
-    for(var i = 0; i < milestonesArray.length; i++) {
+  Object.keys(_milestones || {}).forEach(function(key) {
+    var m = _milestones[key];
+    var slug = "milestone-" + key;
+    milestones[key] = m;
 
-      var milestone = milestonesArray[i];
+    //render
+    var renderTarget = document.getElementById(slug);
+    console.log(renderTarget, slug);
 
-      alert("milestone-" + milestone.id);
+    if(!renderTarget) {
 
-      var renderTarget = document.getElementById("milestone-" + milestone.id);
+      var mDiv = document.createElement("div");
+      mDiv.id = slug;
+      mDiv.className = "milestone-element";
 
-      if(!renderTarget) {
+      mDiv.appendChild(milestoneRenderer(m));
 
-        alert("no render target");
+      milestonesElementSelector.appendChild(mDiv);
 
-        var mDiv = document.createElement("div");
-        mDiv.id = "milestone-" + milestone.id;
+    } else {
 
-        mDiv.appendChild(milestoneRenderer(milestone));
-
-        milestonesElementSelector.appendChild(mDiv);
-
-      } else {
-
-        alert("render target");
-
-        milestonesElementSelector.innerHTML = "";
-        milestonesElementSelector.appendChild(milestoneRenderer(milestone));
-
-      }
+      milestonesElementSelector.innerHTML = "";
+      milestonesElementSelector.appendChild(milestoneRenderer(m));
 
     }
-  
-  })
-  .then(function(){
+
+
+  });
+      
+  return 
     t.sizeTo('#content')
     .done();
-  })
+
 }
 
 function milestoneRenderer(milestone) {
@@ -94,7 +88,7 @@ function close() {
 
 addMilestoneSelector.addEventListener('click', function() {
   
-  renderMilestones();
+  //renderMilestones();
   document.getElementById("new-milestone-form").style.display = "block";
   document.getElementById("js-add-milestone").style.display = "none";
 
@@ -116,29 +110,22 @@ document.getElementById("new-milestone-form-save").addEventListener('click', fun
   milestoneName.value = "";
   milestoneDate.value = ""; 
 
-  tempSaveMilestone(saveValues);
+  firebase.database().ref('cards/' + cardId + '/milestones/' + saveValues.id).set({
+      name: saveValues.name,
+      date: saveValues.date
+    });
 
   close();
 
 });
 
-var tempSaveMilestone = function(milestone) {
-  tempMilestonesArray.push(milestone);
-  renderMilestones();
-}
+document.getElementById('close').addEventListener('click', function(){
 
-document.getElementById('save').addEventListener('click', function(){
-  //backfill Ids. 
-  // for(var i = 0; i < milestonesArray.length; i++) {
-  //   if(!milestonesArray[i].id) {
-  //     milestonesArray[i].id = generateUIDNotMoreThan1million();
-  //   }
-  // }
-  return t.set('card', 'private', 'milestones', JSON.stringify(milestonesArray))
-  .then(function(){
-    return t.closePopup();
-  })
+  return t.closePopup();
+
 });
+
+/* HELPERS */
 
 function generateUIDNotMoreThan1million() {
     return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4)

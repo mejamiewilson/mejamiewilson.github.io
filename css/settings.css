@@ -1,3 +1,7 @@
-body {
-    
+#milestones {
+    background:#efefef;
+}
+.milestone-element {
+    display:inline-block;
+    background:blue;
 }

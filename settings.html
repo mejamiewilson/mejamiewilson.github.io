@@ -1,7 +1,7 @@
 <html>
   <head>
-    <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
-    <link rel="stylesheet" href="./css/settings.css">
+    <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css" />
+    <link rel="stylesheet" href="./css/settings.css" />
     <script src="https://trello.com/power-ups/power-up.min.js"></script>
   </head>
   <body>
@@ -17,8 +17,20 @@
         <a id="js-cancel-new-milestone" href="javascript:">Cancel</a>
       </div>
       <a id="js-add-milestone" href="javascript:">Add a Milestone</a>
-      <button id="save" class="mod-primary">Save</button>
+      <button id="close" class="mod-secondary">Close</button>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCmS7QUeMM147fa5eCKRwkhgbq0xxoebUI",
+        authDomain: "roadmap-c8d00.firebaseapp.com",
+        databaseURL: "https://roadmap-c8d00.firebaseio.com",
+        storageBucket: "roadmap-c8d00.appspot.com",
+        messagingSenderId: "14302158708"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script src="./js/settings.js"></script>
   </body>
 </html>
