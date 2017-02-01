@@ -112,7 +112,10 @@ function days_between(date1, date2) {
     var date2_ms = date2.getTime()
 
     // Calculate the difference in milliseconds
-    var difference_ms = Math.abs(date1_ms - date2_ms)
+    var difference_ms = date1_ms - date2_ms;
+    console.log("Helper");
+    console.log(date1_ms - date2_ms);
+    console.log(difference_ms/ONE_DAY);
 
     // Convert back to days and return
     return Math.round(difference_ms/ONE_DAY)
