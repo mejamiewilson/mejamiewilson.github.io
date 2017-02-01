@@ -61,7 +61,7 @@ var calculateFrame = function() {
   dayWidth = (window.innerWidth - 16) / 30;
 
   scroller.style.width = (dayWidth * 51) + "px";
-  content.scrollLeft = (dayWidth * 7 * -1) + "px";
+  content.scrollLeft = (dayWidth * 7 * -1);
 
 
 };
@@ -69,18 +69,22 @@ var calculateFrame = function() {
 var render = function() {
   console.log("Matched Data", matchedData);
   calculateFrame();
+  renderCalendar();
   Object.keys(matchedData).forEach(function(cardId) {
     renderBar(cardId, matchedData[cardId]);
-  })
-  // for(var i = 0; i < 30; i++) {
-  //   var dayEl = document.createElement("div");
-  //   dayEl.className = "day-slot";
-  //   dayEl.style.width = (dayWidth - 1) + "px";
-  //   var result = new Date();
-  //   result.setDate(result.getDate() + i);
-  //   dayEl.innerHTML = result.getDay();
-  //   dayGridElement.appendChild(dayEl);
-  // }
+  });
+};
+
+var renderCalendar = function() {
+  for(var i = -7; i < 44; i++) {
+    var dayEl = document.createElement("div");
+    dayEl.className = "day-slot";
+    dayEl.style.width = (dayWidth - 1) + "px";
+    var result = new Date();
+    result.setDate(result.getDate() + i);
+    dayEl.innerHTML = result.getDay();
+    dayGridElement.appendChild(dayEl);
+  }
 };
 
 var renderBar = function(cardId, barObj) {
