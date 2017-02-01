@@ -18,7 +18,9 @@ function renderMilestones() {
     
     alert(savedMilestones);
     if(savedMilestones) {
+      alert("Parsing");
       milestoneArray = JSON.parse(savedMilestones);
+      alert(milestoneArray);
     }
     milestonesElementSelector.innerHTML = JSON.stringify(milestonesArray);
   
