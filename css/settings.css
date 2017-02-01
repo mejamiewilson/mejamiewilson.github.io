@@ -2,6 +2,12 @@
     background:#efefef;
 }
 .milestone-element {
+    display:block;
+}
+.milestone-element div, .milestone-element a {
     display:inline-block;
-    background:blue;
+}
+.milestone-element a {
+    text-align:right;
+    text-decoration:underline;
 }
