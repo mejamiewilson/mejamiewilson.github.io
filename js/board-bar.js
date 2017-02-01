@@ -83,7 +83,7 @@ var renderCalendar = function() {
     dayEl.style.height = "100%";
     var result = new Date();
     result.setDate(result.getDate() + i);
-    dayEl.innerHTML = result.getDay();
+    dayEl.innerHTML = result.getDate() + ' ' + result.getMonth().substr(0,3);
     dayGridElement.appendChild(dayEl);
   }
 };
