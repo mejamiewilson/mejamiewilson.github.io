@@ -11,8 +11,7 @@ t.render(function(){
     document.getElementById("result").innerHTML = JSON.stringify(snapshot.val());
   });  
   
-  return t.cards('id', 'name')
-
+  return t.cards('id', 'name').
     then(function(promiseResult) {
       cards = promiseResult;
       document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + JSON.stringify(promiseResult);
