@@ -87,6 +87,9 @@ var renderCalendar = function() {
     var result = new Date();
     result.setDate(result.getDate() + i);
     dayEl.innerHTML = result.getDate() + ' ' + shortMonth[result.getMonth()];
+    if(result.getDay() === 5 || result.getDay() === 6) {
+      dayEl.className = "day-slot weekend";
+    }
     dayGridElement.appendChild(dayEl);
   }
 };
