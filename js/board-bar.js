@@ -11,6 +11,7 @@ var scroller = document.getElementById('scroller');
 var content = document.getElementById('content');
 var dayWidth = 0;
 var today = new Date();
+var shortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 t.render(function(){
 
@@ -83,7 +84,7 @@ var renderCalendar = function() {
     dayEl.style.height = "100%";
     var result = new Date();
     result.setDate(result.getDate() + i);
-    dayEl.innerHTML = result.getDate() + ' ' + result.getMonth().substr(0,3);
+    dayEl.innerHTML = result.getDate() + ' ' + shortMonth[result.getMonth()];
     dayGridElement.appendChild(dayEl);
   }
 };
