@@ -89,7 +89,8 @@ function milestoneRenderer(milestone) {
 }
 
 function handleEdit(event) {
-  console.log("Event");
+  console.log(event);
+  console.log(this.id);
   openForm("milestone");
 }
 
