@@ -15,6 +15,7 @@ var t = TrelloPowerUp.iframe();
 t.card('id').then(init);
 
 var init = function(id) {
+  alert(id);
   console.log("Found the ID", id);
   cardId = id;
   firebaseRef = firebase.database().ref('cards/' + id + '/milestones');
