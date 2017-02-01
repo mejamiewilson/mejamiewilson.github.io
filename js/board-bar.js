@@ -3,20 +3,45 @@
 var t = TrelloPowerUp.iframe();
 var firebaseRef;
 var cards = [];
+var milestones = [];
+var matchedData = {};
 
 t.render(function(){
 
   firebaseRef = firebase.database().ref('cards/');
   firebaseRef.on('value', function(snapshot) {
-    document.getElementById("result").innerHTML = JSON.stringify(snapshot.val());
+    milestones = snapshot.val();
+    dataMatch();
   });  
   
   return t.cards('id', 'name').
     then(function(promiseResult) {
       cards = promiseResult;
-      document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + JSON.stringify(promiseResult);
-      console.log(promiseResult);
+      dataMatch();
     });
-
   
 });
+
+//data match
+var dataMatch = function() {
+
+  if(milestones.length !== 0 && cards.length !== 0) {
+
+    console.log("Starting to card match");
+
+    cards.forEach(function(card) {
+
+      if(milestones[card.id] !== null) {
+        matchedData[card.id] = {
+          milestone: milestones[card.id],
+          card: card
+        };
+      }
+
+    });
+
+    console.log("Matched data to render");
+
+  }
+
+};
