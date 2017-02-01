@@ -95,6 +95,10 @@ var renderBar = function(cardId, barObj) {
 
   var daysBetweenMin = days_between(min, today);
   var daysBetweenMax = days_between(max, today);
+  var daysBetweenBoth = days_between(min, max);
+
+  getBar.style.width = dayWidth * daysBetweenBoth;
+  getBar.style.left = dayWidth * daysBetweenMin;
 
   console.log("Days between", daysBetweenMin, daysBetweenMax);
 
@@ -113,10 +117,7 @@ function days_between(date1, date2) {
 
     // Calculate the difference in milliseconds
     var difference_ms = date1_ms - date2_ms;
-    console.log("Helper");
-    console.log(date1_ms - date2_ms);
-    console.log(difference_ms/ONE_DAY);
-
+  
     // Convert back to days and return
     return Math.round(difference_ms/ONE_DAY)
 
