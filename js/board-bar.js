@@ -5,6 +5,7 @@ var firebaseRef;
 var cards = [];
 var milestones = [];
 var matchedData = {};
+var canvasElement = document.getElementById("result");
 
 t.render(function(){
 
@@ -41,7 +42,30 @@ var dataMatch = function() {
     });
 
     console.log("Matched data to render");
+    render();
 
   }
+
+};
+
+var calculateFrame = function() {
+
+  var barHeight = 30;
+  var height = ((Object.keys(matchedData).length + 1) * (30 + 8)) - 8;
+  canvasElement.style.height = height + "px";
+
+};
+
+var render = function() {
+  console.log("Matched Data", matchedData);
+  calculateFrame();
+  Object.keys(matchedData).forEach(function(cardId) {
+    renderBar(cardId, matchedData[cardId]);
+  })
+};
+
+var renderBar = function(cardId, barObj) {
+
+  console.log("Render Bar", cardId);
 
 };
