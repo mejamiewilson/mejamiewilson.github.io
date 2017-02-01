@@ -69,6 +69,7 @@ var render = function() {
   for(var i = 0; i < 30; i++) {
     var dayEl = document.createElement("div");
     dayEl.className = "day-slot";
+    dayEl.style.width = (dayWidth - 1) + "px";
     var result = new Date();
     result.setDate(result.getDate() + i);
     dayEl.innerHTML = result.getDay();
