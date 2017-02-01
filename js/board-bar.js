@@ -62,6 +62,7 @@ var calculateFrame = function() {
   dayWidth = (window.innerWidth - 16) / 30;
 
   scroller.style.width = (dayWidth * 51) + "px";
+  dayGridElement.style.width = (dayWidth * 51) + "px";
   content.scrollLeft = (dayWidth * 7 * -1);
 
 
