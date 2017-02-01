@@ -6,53 +6,75 @@ var t = TrelloPowerUp.iframe();
 var addMilestoneSelector = document.getElementById('js-add-milestone');
 var milestonesElementSelector = document.getElementById('milestones');
 
-// var fruitSelector = document.getElementById('fruit');
-// var vegetableSelector = document.getElementById('vegetable');
+var milestonesArray = [];
 
-t.render(function(){
+t.render(renderMilestones);
+
+function renderMilestones() {
   return Promise.all([
-    t.get('card', 'private', 'milestones'),
-    t.get('board', 'shared', 'fruit'),
-    t.get('board', 'private', 'vegetable')
+    t.get('card', 'private', 'milestones')
   ])
-  .spread(function(savedMilestones, savedFruit, savedVegetable){
+  .spread(function(savedMilestones){
     //set the values
-    if(savedMilestones) {
-      milestonesElementSelector.innerHTML = JSON.stringify(savedMilestones);
-    }
-    // if(savedFruit && /[a-z]+/.test(savedFruit)){
-    //   fruitSelector.value = savedFruit;
-    // }
-    // if(savedVegetable && /[a-z]+/.test(savedVegetable)){
-    //   vegetableSelector.value = savedVegetable;
-    // }
+    //if(savedMilestones) {
+      milestonesElementSelector.innerHTML = JSON.stringify(milestonesArray);
+    //}
   })
   .then(function(){
     t.sizeTo('#content')
     .done();
   })
-});
+}
 
-var milestoneRenderer = function() {
-  var div = document.createElement("div");
-  div.innerHTML = "New Milestone Form";
-  return div;
-};
+
+function close() {
+
+  document.getElementById("new-milestone-form").style.display = "none";
+  document.getElementById("js-add-milestone").style.display = "block";
+
+}
 
 addMilestoneSelector.addEventListener('click', function() {
-  console.log("Appending Child");
-  //milestonesElementSelector.appendChild(milestoneRenderer());
-  milestonesElementSelector.innerHTML = "New Milestone";
-  return t.sizeTo('#content')
-    .done();
+  
+  document.getElementById("new-milestone-form").style.display = "block";
+  document.getElementById("js-add-milestone").style.display = "none";
+
 });
 
+document.getElementById("js-cancel-new-milestone").addEventListener('click', close);
+
+document.getElementById("new-milestone-form-save").addEventListener('click', function() {
+
+  var milestoneName = document.getElementById("new-milestone-form-name");
+  var milestoneDate = document.getElementById("new-milestone-form-date");
+
+  var saveValues = {
+    name: milestoneName.value,
+    date: milestoneDate.value
+  };
+
+  milestoneName.value = "";
+  milestoneDate.value = ""; 
+
+  tempSaveMilestone(saveValues);
+
+  close();
+
+});
+
+var tempSaveMilestone = function(milestone) {
+  milestonesArray.push(milestone);
+  renderMilestones();
+}
+
+
 document.getElementById('save').addEventListener('click', function(){
+  return t.set('card', 'private', milestonesArray.toJSON())
   // return t.set('board', 'private', 'vegetable', vegetableSelector.value)
   // .then(function(){
   //   return t.set('board', 'shared', 'fruit', fruitSelector.value);
   // })
-  // .then(function(){
+  .then(function(){
     return t.closePopup();
-  //})
+  })
 });
