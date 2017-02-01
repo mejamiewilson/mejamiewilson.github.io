@@ -2,6 +2,7 @@
 
 var t = TrelloPowerUp.iframe();
 var firebaseRef;
+var cards = [];
 
 t.render(function(){
 
@@ -9,6 +10,13 @@ t.render(function(){
   firebaseRef.on('value', function(snapshot) {
     document.getElementById("result").innerHTML = JSON.stringify(snapshot.val());
   });  
+  
+  return t.cards('id', 'name')
+
+    then(function(promiseResult) {
+      cards = promiseResult;
+      console.log(promiseResult);
+    });
 
   
 });
