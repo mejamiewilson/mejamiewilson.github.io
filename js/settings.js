@@ -37,8 +37,8 @@ function renderMilestones() {
 
       } else {
 
-        milestoneElementSelector.innerHTML = "";
-        milestoneElementSelector.appendChild(milestoneRenderer(milestone));
+        milestonesElementSelector.innerHTML = "";
+        milestonesElementSelector.appendChild(milestoneRenderer(milestone));
 
       }
 
@@ -110,11 +110,11 @@ var tempSaveMilestone = function(milestone) {
 
 document.getElementById('save').addEventListener('click', function(){
   //backfill Ids. 
-  for(var i = 0; i < milestonesArray.length; i++) {
-    if(!milestonesArray[i].id) {
-      milestonesArray[i].id = generateUIDNotMoreThan1million();
-    }
-  }
+  // for(var i = 0; i < milestonesArray.length; i++) {
+  //   if(!milestonesArray[i].id) {
+  //     milestonesArray[i].id = generateUIDNotMoreThan1million();
+  //   }
+  // }
   return t.set('card', 'private', 'milestones', JSON.stringify(milestonesArray))
   .then(function(){
     return t.closePopup();
