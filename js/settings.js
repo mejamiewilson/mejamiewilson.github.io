@@ -78,12 +78,12 @@ function milestoneRenderer(milestone) {
   var date = document.createElement("div");
   var d = new Date(milestone.date);
   date.innerHTML = d.getDate() + " " + months[d.getMonth()];
-  name.className="date-div";
+  date.className="date-div";
   var link = document.createElement("a");
   link.innerHTML = "Edit";
   wrapper.appendChild(name);
-  wrapper.appendChild(date);
   wrapper.appendChild(link);
+  wrapper.appendChild(date);
   wrapper.className = "cf";
   return wrapper;
 }
