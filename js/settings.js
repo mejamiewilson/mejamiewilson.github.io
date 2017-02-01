@@ -3,6 +3,7 @@
 //to do 
 // edit form
 // delete
+// resize on cancel
 
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
@@ -22,7 +23,6 @@ function renderMilestones() {
   .spread(function(savedMilestones){
     
     milestonesArray = [];
-
     
     if(savedMilestones) {
       milestonesArray = JSON.parse(savedMilestones);
@@ -37,9 +37,13 @@ function renderMilestones() {
 
       var milestone = milestonesArray[i];
 
+      alert("milestone-" + milestone.id);
+
       var renderTarget = document.getElementById("milestone-" + milestone.id);
 
       if(!renderTarget) {
+
+        alert("no render target");
 
         var mDiv = document.createElement("div");
         mDiv.id = "milestone-" + milestone.id;
@@ -49,6 +53,8 @@ function renderMilestones() {
         milestonesElementSelector.appendChild(mDiv);
 
       } else {
+
+        alert("render target");
 
         milestonesElementSelector.innerHTML = "";
         milestonesElementSelector.appendChild(milestoneRenderer(milestone));
