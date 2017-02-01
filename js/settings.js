@@ -11,6 +11,7 @@ var cardId;
 var firebaseRef;
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 t.card('id', 'name', 'url').then(function(promiseResult){
   init(promiseResult.id);
@@ -75,7 +76,8 @@ function milestoneRenderer(milestone) {
   name.innerHTML = milestone.name;
   name.className="name-div";
   var date = document.createElement("div");
-  date.innerHTML = milestone.date;
+  var d = new Date(milestone.date);
+  date.innerHTML = d.getDate() + " " + months[d.getMonth()];
   name.className="date-div";
   var link = document.createElement("a");
   link.innerHTML = "Edit";
