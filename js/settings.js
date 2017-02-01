@@ -15,7 +15,10 @@ function renderMilestones() {
     t.get('card', 'private', 'milestones')
   ])
   .spread(function(savedMilestones){
-    milestoneArray = JSON.parse(savedMilestones);
+    
+    if(savedMilestones) {
+      milestoneArray = JSON.parse(savedMilestones);
+    }
     //set the values
     //if(savedMilestones) {
 
@@ -71,7 +74,7 @@ var tempSaveMilestone = function(milestone) {
 
 
 document.getElementById('save').addEventListener('click', function(){
-  return t.set('card', 'private', JSON.stringify(milestonesArray))
+  return t.set('card', 'private', 'milestones', JSON.stringify(milestonesArray))
   // return t.set('board', 'private', 'vegetable', vegetableSelector.value)
   // .then(function(){
   //   return t.set('board', 'shared', 'fruit', fruitSelector.value);
