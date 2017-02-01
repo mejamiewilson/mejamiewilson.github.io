@@ -141,7 +141,7 @@ var renderBar = function(cardId, barObj) {
     dot.className = "milestone";
     dot.innerHTML = milestones[x].name;
     getBar.appendChild(dot);
-    dot.style.left = (((fromStart * dayWidth) - 5) + (dayWidth / 2) - 5) + "px";
+    dot.style.left = (((fromStart * dayWidth) - 5) + (dayWidth / 2)) + "px";
   }
 
 };
