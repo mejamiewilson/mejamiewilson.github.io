@@ -64,9 +64,7 @@ function renderMilestones(_milestones) {
 
   });
       
-  return 
-    t.sizeTo('#content')
-    .done();
+  return t.sizeTo('#content').done();
 
 }
 
@@ -81,6 +79,8 @@ function milestoneRenderer(milestone) {
   date.className="date-div";
   var link = document.createElement("a");
   link.innerHTML = "Edit";
+  link.id="edit-" + milestone.id;
+  link.addEventListener('click', handleEdit);
   wrapper.appendChild(name);
   wrapper.appendChild(link);
   wrapper.appendChild(date);
@@ -88,6 +88,10 @@ function milestoneRenderer(milestone) {
   return wrapper;
 }
 
+function handleEdit(event) {
+  console.log("Event");
+  openForm("milestone");
+}
 
 function close() {
 
@@ -96,13 +100,13 @@ function close() {
 
 }
 
-addMilestoneSelector.addEventListener('click', function() {
-  
-  //renderMilestones();
+function openForm() {
   document.getElementById("new-milestone-form").style.display = "block";
   document.getElementById("js-add-milestone").style.display = "none";
+  return t.sizeTo('#content').done();
+}
 
-});
+addMilestoneSelector.addEventListener('click', openForm);
 
 document.getElementById("js-cancel-new-milestone").addEventListener('click', close);
 
