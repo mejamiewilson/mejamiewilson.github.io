@@ -90,7 +90,8 @@ var renderCalendar = function() {
     if(result.getDay() === 5 || result.getDay() === 6) {
       dayEl.className = "day-slot weekend";
     }
-    if(result === new Date()) {
+    var today = new Date();
+    if(result.getDate() +":"+result.getMonth() === today.getDate()+":"+today.getMonth()) {
       dayEl.className += " today";
     }
     dayGridElement.appendChild(dayEl);
