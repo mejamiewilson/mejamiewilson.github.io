@@ -1,5 +1,9 @@
 /* global TrelloPowerUp */
 
+//to do 
+// edit form
+// delete
+
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
@@ -22,13 +26,11 @@ function renderMilestones() {
     
     if(savedMilestones) {
       milestonesArray = JSON.parse(savedMilestones);
-      alert("Saved Milestones Array Length" + milestonesArray.length);
     }
 
     for(var x = 0; x < tempMilestonesArray.length; x++) {
       milestonesArray.push(tempMilestonesArray[x]);
     }
-    alert("{plus temp} Milestone Array Lenght: " + milestonesArray.length);
     tempMilestonesArray = [];
 
     for(var i = 0; i < milestonesArray.length; i++) {
