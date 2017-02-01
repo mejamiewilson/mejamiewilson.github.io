@@ -69,7 +69,7 @@ var tempSaveMilestone = function(milestone) {
 
 
 document.getElementById('save').addEventListener('click', function(){
-  return t.set('card', 'private', milestonesArray.toJSON())
+  return t.set('card', 'private', JSON.stringify(milestonesArray))
   // return t.set('board', 'private', 'vegetable', vegetableSelector.value)
   // .then(function(){
   //   return t.set('board', 'shared', 'fruit', fruitSelector.value);
