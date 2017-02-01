@@ -104,6 +104,18 @@ var renderBar = function(cardId, barObj) {
 
   console.log("Days between", daysBetweenMin, daysBetweenMax);
 
+  //render milesstones in the bar
+  for(x in milestones) {
+    console.log('draw milestone');
+    var d = new Date(milestones[x].date);
+    var fromStart = days_between(min, d);
+    var dot = document.createElement("div");
+    dot.addClass("milestone");
+    getBar.appendChild(dot);
+    dot.style.left = (fromStart * dayWidth) + "px";
+    console.log(d, fromStart, dot, dot.style.left);
+  }
+
 };
 
 
