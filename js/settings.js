@@ -40,7 +40,9 @@ var milestoneRenderer = function() {
 };
 
 addMilestoneSelector.addEventListener('click', function() {
-  milestonesElementSelector.appendChild(milestoneRenderer());
+  console.log("Appending Child");
+  //milestonesElementSelector.appendChild(milestoneRenderer());
+  milestonesElementSelector.innerHTML = "New Milestone";
 });
 
 document.getElementById('save').addEventListener('click', function(){
