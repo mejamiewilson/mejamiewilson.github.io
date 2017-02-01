@@ -16,19 +16,53 @@ function renderMilestones() {
   ])
   .spread(function(savedMilestones){
     
-    alert(savedMilestones);
     if(savedMilestones) {
-      alert("Parsing");
-      milestoneArray = JSON.parse(savedMilestones);
-      alert(milestoneArray);
+      milestonesArray = JSON.parse(savedMilestones);
     }
-    milestonesElementSelector.innerHTML = JSON.stringify(milestonesArray);
+
+    for(var i = 0; i < milestonesArray.length; i++) {
+
+      var milestone = milestonesArray[i];
+
+      var renderTarget = document.getElementById("milestone-" + milestone.id);
+
+      if(!renderTarget) {
+
+        var mDiv = document.createElement("div");
+        mDiv.id = "milestone-" + milestone.id;
+
+        mDiv.appendChild(milestoneRenderer(milestone));
+
+        milestonesElementSelector.appendChild(mDiv);
+
+      } else {
+
+        milestoneElementSelector.innerHTML = "";
+        milestoneElementSelector.appendChild(milestoneRenderer(milestone));
+
+      }
+
+    }
   
   })
   .then(function(){
     t.sizeTo('#content')
     .done();
   })
+}
+
+function milestoneRenderer(milestone) {
+  var wrapper = document.createElement("div");
+  var name = document.createElement("div");
+  name.innerHTML = milestone.name;
+  var date = document.createElement("div");
+  date.innerHTML = milestone.date;
+  var link = document.createElement("a");
+  link.innerHTML = "Edit";
+  wrapper.appendChild(name);
+  wrapper.appendChild(date);
+  wrapper.appendChild(link);
+  return wrapper;
 }
 
 
@@ -56,7 +90,8 @@ document.getElementById("new-milestone-form-save").addEventListener('click', fun
 
   var saveValues = {
     name: milestoneName.value,
-    date: milestoneDate.value
+    date: milestoneDate.value,
+    id: generateUIDNotMoreThan1million()
   };
 
   milestoneName.value = "";
@@ -74,9 +109,18 @@ var tempSaveMilestone = function(milestone) {
 }
 
 document.getElementById('save').addEventListener('click', function(){
-  console.log(JSON.stringify(milestonesArray));
+  //backfill Ids. 
+  for(var i = 0; i < milestonesArray.length; i++) {
+    if(!milestonesArray[i].id) {
+      milestonesArray[i].id = generateUIDNotMoreThan1million();
+    }
+  }
   return t.set('card', 'private', 'milestones', JSON.stringify(milestonesArray))
   .then(function(){
     return t.closePopup();
   })
 });
+
+function generateUIDNotMoreThan1million() {
+    return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4)
+}
