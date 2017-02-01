@@ -96,10 +96,11 @@ var renderBar = function(cardId, barObj) {
   var daysBetweenMin = days_between(min, today);
   var daysBetweenMax = days_between(max, today);
   var daysBetweenBoth = days_between(min, max);
+  console.log("days between both", daysBetweenBoth);
   var dayWidth = (window.innerWidth - 16) / 30;
-  
-  getBar.style.width = dayWidth * daysBetweenBoth;
-  getBar.style.left = dayWidth * daysBetweenMin;
+
+  getBar.style.width = (dayWidth * daysBetweenBoth) + "px";
+  getBar.style.left = (dayWidth * daysBetweenMin) + "px";
 
   console.log("Days between", daysBetweenMin, daysBetweenMax);
 
