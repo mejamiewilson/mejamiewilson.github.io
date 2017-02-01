@@ -68,8 +68,6 @@ var render = function() {
 
 var renderBar = function(cardId, barObj) {
 
-  console.log("Render Bar", cardId);
-
   var getBar = document.getElementById("milestone-bar-" + cardId);
 
   if(!getBar) {
@@ -80,6 +78,19 @@ var renderBar = function(cardId, barObj) {
   }
 
   getBar.innerHTML = barObj.card.name;
+
+  //get earliest date
+  //get last date
+
+  var milestones = barObj.milestone.milestones;
+  var min = Infinity, max = -Infinity, x;
+  for( x in milestones) {
+      var d = new Date(milestones[x].date);
+      if( d < min) min = d;
+      if( d > max) max = d;
+  }
+
+  console.log("Milestone, min max", min, max);
 
 
 
