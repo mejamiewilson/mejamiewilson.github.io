@@ -6,10 +6,20 @@
   </head>
   <body>
     <div id="content">
-      <h2>Sourcegraph Roadmap!</h2>
-      <hr/>
       <div id="result"></div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCmS7QUeMM147fa5eCKRwkhgbq0xxoebUI",
+        authDomain: "roadmap-c8d00.firebaseapp.com",
+        databaseURL: "https://roadmap-c8d00.firebaseio.com",
+        storageBucket: "roadmap-c8d00.appspot.com",
+        messagingSenderId: "14302158708"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script src="./js/board-bar.js"></script>
   </body>
 </html>
