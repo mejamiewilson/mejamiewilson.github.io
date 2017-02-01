@@ -12,7 +12,11 @@ var firebaseRef;
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
-t.card('id').then(init);
+t.card('id', 'name', 'url').then(function(promiseResult){
+  alert("FOUND THE ID", id);
+  init(promiseResult.id);
+});
+
 
 var init = function(id) {
   alert(id);
