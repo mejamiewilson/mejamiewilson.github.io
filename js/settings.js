@@ -16,14 +16,12 @@ function renderMilestones() {
   ])
   .spread(function(savedMilestones){
     
+    alert(savedMilestones);
     if(savedMilestones) {
       milestoneArray = JSON.parse(savedMilestones);
     }
-    //set the values
-    //if(savedMilestones) {
-
-      milestonesElementSelector.innerHTML = JSON.stringify(milestonesArray);
-    //}
+    milestonesElementSelector.innerHTML = JSON.stringify(milestonesArray);
+  
   })
   .then(function(){
     t.sizeTo('#content')
@@ -41,6 +39,7 @@ function close() {
 
 addMilestoneSelector.addEventListener('click', function() {
   
+  renderMilestones();
   document.getElementById("new-milestone-form").style.display = "block";
   document.getElementById("js-add-milestone").style.display = "none";
 
@@ -72,13 +71,9 @@ var tempSaveMilestone = function(milestone) {
   renderMilestones();
 }
 
-
 document.getElementById('save').addEventListener('click', function(){
+  console.log(JSON.stringify(milestonesArray));
   return t.set('card', 'private', 'milestones', JSON.stringify(milestonesArray))
-  // return t.set('board', 'private', 'vegetable', vegetableSelector.value)
-  // .then(function(){
-  //   return t.set('board', 'shared', 'fruit', fruitSelector.value);
-  // })
   .then(function(){
     return t.closePopup();
   })
