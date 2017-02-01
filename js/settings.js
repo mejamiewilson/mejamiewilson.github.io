@@ -79,6 +79,7 @@ function milestoneRenderer(milestone) {
   date.className="date-div";
   var link = document.createElement("a");
   link.innerHTML = "Edit";
+  console.log("Rendering a milestone", milestone);
   link.id="edit-" + milestone.id;
   link.addEventListener('click', handleEdit);
   wrapper.appendChild(name);
@@ -95,10 +96,9 @@ function handleEdit(event) {
 }
 
 function close() {
-
   document.getElementById("new-milestone-form").style.display = "none";
   document.getElementById("js-add-milestone").style.display = "block";
-
+  return t.sizeTo('#content').done();
 }
 
 function openForm() {
