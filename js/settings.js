@@ -15,8 +15,10 @@ function renderMilestones() {
     t.get('card', 'private', 'milestones')
   ])
   .spread(function(savedMilestones){
+    milestoneArray = JSON.parse(savedMilestones);
     //set the values
     //if(savedMilestones) {
+
       milestonesElementSelector.innerHTML = JSON.stringify(milestonesArray);
     //}
   })
