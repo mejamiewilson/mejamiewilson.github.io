@@ -108,11 +108,11 @@ var renderBar = function(cardId, barObj) {
   for(x in milestones) {
     console.log('draw milestone');
     var d = new Date(milestones[x].date);
-    var fromStart = days_between(min, d);
+    var fromStart = days_between(d, min);
     var dot = document.createElement("div");
     dot.className = "milestone";
     getBar.appendChild(dot);
-    dot.style.left = (fromStart * dayWidth) + "px";
+    dot.style.left = ((fromStart * dayWidth) - 5) + "px";
     console.log(d, fromStart, dot, dot.style.left);
   }
 
