@@ -13,7 +13,9 @@ var dayWidth = 0;
 var today = new Date();
 var shortMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-t.render(function(){
+t.render(render);
+
+var render = function(){
 
   firebaseRef = firebase.database().ref('cards/');
   firebaseRef.on('value', function(snapshot) {
@@ -24,11 +26,10 @@ t.render(function(){
   return t.cards('id', 'name', 'labels').
     then(function(promiseResult) {
       cards = promiseResult;
-      console.log(promiseResult, "CARDS FETCHED");
       dataMatch();
     });
   
-});
+}
 
 //data match
 var dataMatch = function() {

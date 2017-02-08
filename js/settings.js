@@ -98,7 +98,7 @@ function handleEdit(event) {
   var milestoneName = document.getElementById("new-milestone-form-name");
   var milestoneDate = document.getElementById("new-milestone-form-date");
   milestoneName.value = milestone.name;
-  mielstoneDate.value = milestone.date;
+  milestoneDate.value = milestone.date;
   var button = document.getElementById("new-milestone-form-save");
   button.value = "Save";
   openForm("milestone");
